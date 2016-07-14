@@ -9,10 +9,9 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="fr.tvbarthel.ivanbnw.MainActivity">
 
-    <TextView
+    <fr.tvbarthel.ivanbnw.home.HomeView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Hello World!" />
+        android:layout_gravity="center" />
 
 </FrameLayout>

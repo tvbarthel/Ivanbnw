@@ -19,6 +19,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors {
+        // interactor implementation are completely mocked.
+        mocked {
+
+        }
+
+        // interactor implementation are based on cheerleader library.
+        cheerleader {
+
+        }
+    }
 }
 
 dependencies {

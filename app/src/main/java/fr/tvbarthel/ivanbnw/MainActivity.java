@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ((IvanbApplication) getApplication()).component().inject(this);
+        IvanbApplication.component().inject(this);
 
         // Dummy injection used as injection example.
         //TODO to remove.

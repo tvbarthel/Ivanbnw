@@ -7,7 +7,7 @@ import android.app.Application;
  */
 public class IvanbApplication extends Application {
 
-    private ApplicationComponent applicationComponent;
+    private static ApplicationComponent applicationComponent;
 
     @Override
     public void onCreate() {
@@ -23,7 +23,7 @@ public class IvanbApplication extends Application {
      *
      * @return application component.
      */
-    public ApplicationComponent component() {
+    public static ApplicationComponent component() {
         return applicationComponent;
     }
 }
