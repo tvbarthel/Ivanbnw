@@ -1,0 +1,8 @@
+<resources>
+
+    <!-- Item linked to a given Android version -->
+    <style name="AppTheme" parent="AppBase">
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+</resources>
