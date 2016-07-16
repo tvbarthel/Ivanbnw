@@ -1,5 +1,7 @@
 package fr.tvbarthel.ivanbnw.home;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -64,14 +66,44 @@ public class HomeView extends FrameLayout {
 
 
     private void displayHomeData() {
-        loadingView.animate().alpha(0f).setDuration(300).setListener(null);
-        dataView.animate().alpha(1f).setDuration(300).setListener(null);
+        if (loadingView.getVisibility() == VISIBLE) {
+            loadingView.animate().alpha(0f).setDuration(300).setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    loadingView.setVisibility(INVISIBLE);
+                }
+            });
+        }
+        if (dataView.getVisibility() != VISIBLE) {
+            dataView.animate().alpha(1f).setDuration(300).setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationStart(Animator animation) {
+                    dataView.setAlpha(0f);
+                    dataView.setVisibility(VISIBLE);
+                }
+            });
+        }
     }
 
 
     private void displayLoadingView() {
-        loadingView.animate().alpha(1f).setDuration(300).setListener(null);
-        dataView.animate().alpha(0f).setDuration(300).setListener(null);
+        if (loadingView.getVisibility() != VISIBLE) {
+            loadingView.animate().alpha(1f).setDuration(300).setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationStart(Animator animation) {
+                    loadingView.setAlpha(0f);
+                    loadingView.setVisibility(VISIBLE);
+                }
+            });
+        }
+        if (dataView.getVisibility() == VISIBLE) {
+            dataView.animate().alpha(0f).setDuration(300).setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    dataView.setVisibility(INVISIBLE);
+                }
+            });
+        }
     }
 
     /**
@@ -100,8 +132,10 @@ public class HomeView extends FrameLayout {
         };
 
         homeInteractor.setPresenter(internalPresenter);
-        loadingView.setAlpha(0f);
-        dataView.setAlpha(0f);
+
+        dataView.setVisibility(INVISIBLE);
+        loadingView.setVisibility(INVISIBLE);
+
         homeInteractor.requestHomeData();
     }
 }

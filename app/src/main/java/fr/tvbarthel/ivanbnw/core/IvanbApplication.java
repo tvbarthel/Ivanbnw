@@ -12,10 +12,7 @@ public class IvanbApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        applicationComponent = DaggerApplicationComponent
-                .builder()
-                .applicationModule(new ApplicationModule(this))
-                .build();
+        applicationComponent = initComponent();
     }
 
     /**
@@ -25,5 +22,17 @@ public class IvanbApplication extends Application {
      */
     public static ApplicationComponent component() {
         return applicationComponent;
+    }
+
+    /**
+     * Initialize the dagger graph.
+     *
+     * @return application component build form dagger graph.
+     */
+    protected ApplicationComponent initComponent() {
+        return DaggerApplicationComponent
+                .builder()
+                .applicationModule(new ApplicationModule(this))
+                .build();
     }
 }

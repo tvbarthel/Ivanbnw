@@ -16,6 +16,10 @@
     </Match>
 
     <Match>
+        <Class name="fr.tvbarthel.ivanbnw.core.IvanbApplication" />
+    </Match>
+
+    <Match>
         <Package name="com.actionbarsherlock.internal.nineoldandroids.animation" />
     </Match>
 

@@ -11,6 +11,7 @@
 
     <!-- exclude test files !-->
     <exclude-pattern>.*Test.java</exclude-pattern>
+    <exclude-pattern>.*Runner.java</exclude-pattern>
 
     <rule ref="rulesets/java/android.xml"/>
     <rule ref="rulesets/java/clone.xml" />

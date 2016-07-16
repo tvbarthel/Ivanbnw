@@ -9,16 +9,29 @@ android {
     defaultConfig {
         applicationId "fr.tvbarthel.ivanbnw"
         minSdkVersion 16
-        targetSdkVersion 23
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
+        testInstrumentationRunner 'fr.tvbarthel.ivanbnw.core.IvanbRunner'
     }
     buildTypes {
+
+        debug {
+
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+        instrumentation.initWith(debug)
+        instrumentation {
+
+        }
     }
+
+    testBuildType "instrumentation"
 
     productFlavors {
         // interactor implementation are completely mocked.
@@ -43,4 +56,54 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
 
+    // Instrumentation test dependencies
+    androidTestApt 'com.google.dagger:dagger-compiler:2.2'
+    androidTestCompile 'org.mockito:mockito-core:1.+'
+    androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
+    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
+    androidTestCompile 'com.squareup.spoon:spoon-client:1.3.2'
+    androidTestCompile 'com.android.support.test:testing-support-lib:0.1'
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.0') {
+        exclude group: 'javax.inject'
+    }
+    androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.0') {
+        exclude module: 'support-v4'
+        exclude module: 'recyclerview-v7'
+    }
+
+}
+
+/**
+ * Task used to run test with report generation.
+ */
+task runAutomationTest(type: Exec, dependsOn: ['grantAnimationPermissions', 'uninstallAll', 'assembleMockedInstrumentation', 'assembleMockedInstrumentationAndroidTest']) {
+
+    description 'Run all automation tests. Will clean and compile new apks before running tests.'
+
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    def sdkDir = properties.getProperty('sdk.dir')
+    def javaDir = properties.getProperty('java.dir')
+
+    // run instrumentation test on all connected device.
+    commandLine javaDir,
+            "-jar", "libs/spoon-runner-1.3.2-jar-with-dependencies.jar",
+            "--apk", "build/outputs/apk/app-mocked-instrumentation-unaligned.apk",
+            "--test-apk", "build/outputs/apk/app-mocked-instrumentation-androidTest-unaligned.apk",
+            "--sdk", sdkDir,
+            "--e", "package=fr.tvbarthel.ivanbnw.suite",
+            "--output", "build/reports/instrumentationTests"
+}
+
+// Grant animation permissions to avoid test failure because of ui sync.
+task grantAnimationPermissions(type: Exec) {
+    group = 'test'
+    description = 'Grant permissions for testing.'
+
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    def sdkDir = properties.getProperty('sdk.dir')
+
+    def absolutePath = file("$projectDir/../")
+    commandLine "$absolutePath/disable_animations.sh $sdkDir/platform-tools/adb".split(" ")
 }
