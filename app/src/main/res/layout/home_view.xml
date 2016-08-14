@@ -3,12 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/home_view_dummy_text"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/home_view_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="@string/welcome" />
+        android:layout_height="match_parent" />
 
     <ProgressBar
         android:id="@+id/home_view_dummy_progress"
