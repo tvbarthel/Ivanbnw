@@ -14,11 +14,10 @@ import com.squareup.picasso.Picasso;
 import fr.tvbarthel.cheerleader.library.client.SoundCloudUser;
 import fr.tvbarthel.cheerleader.library.helpers.SoundCloudArtworkHelper;
 import fr.tvbarthel.ivanbnw.R;
-import fr.tvbarthel.ivanbnw.home.HomeView;
 
 /**
  * View used to display the {@link SoundCloudUser} data
- * in the {@link HomeView}
+ * in the {@link fr.tvbarthel.ivanbnw.home.HomeView}
  */
 class ArtistView extends CardView {
 
@@ -30,7 +29,7 @@ class ArtistView extends CardView {
 
     /**
      * View used to display the {@link SoundCloudUser} data
-     * in the {@link HomeView}
+     * in the {@link fr.tvbarthel.ivanbnw.home.HomeView}
      *
      * @param context holding context.
      */
@@ -40,7 +39,7 @@ class ArtistView extends CardView {
 
     /**
      * View used to display the {@link SoundCloudUser} data
-     * in the {@link HomeView}
+     * in the {@link fr.tvbarthel.ivanbnw.home.HomeView}
      *
      * @param context holding context.
      * @param attrs   attr from xml.
@@ -51,7 +50,7 @@ class ArtistView extends CardView {
 
     /**
      * View used to display the {@link SoundCloudUser} data
-     * in the {@link HomeView}
+     * in the {@link fr.tvbarthel.ivanbnw.home.HomeView}
      *
      * @param context      holding context.
      * @param attrs        attr from xml.

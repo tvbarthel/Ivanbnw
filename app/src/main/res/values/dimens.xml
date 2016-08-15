@@ -10,4 +10,5 @@
     <dimen name="artist_view_size_bottom_bar_text_size">18sp</dimen>
     <dimen name="shadow_size">4dp</dimen>
     <dimen name="artist_view_card_radius">4dp</dimen>
+    <dimen name="artist_header_view_artist_name">22sp</dimen>
 </resources>

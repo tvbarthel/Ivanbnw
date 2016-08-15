@@ -15,5 +15,6 @@
     <color name="track_view_pressed_color_playing">#55555555</color>
     <color name="home_artist_view_text_color">@color/white</color>
     <color name="home_artist_view_background_color">@color/grey</color>
+    <color name="artist_header_view_artist_name">@color/grey</color>
 
 </resources>

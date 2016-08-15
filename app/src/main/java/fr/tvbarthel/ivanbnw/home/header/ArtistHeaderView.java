@@ -3,6 +3,7 @@ package fr.tvbarthel.ivanbnw.home.header;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
+import android.widget.TextView;
 
 import fr.tvbarthel.cheerleader.library.client.SoundCloudUser;
 import fr.tvbarthel.ivanbnw.R;
@@ -14,6 +15,7 @@ import fr.tvbarthel.ivanbnw.R;
 public class ArtistHeaderView extends HeaderView {
 
     private ArtistView artistView;
+    private TextView artistName;
 
     /**
      * {@link HeaderView} used to display a
@@ -32,6 +34,7 @@ public class ArtistHeaderView extends HeaderView {
      */
     public void presentData(@NonNull SoundCloudUser artist) {
         artistView.presentData(artist);
+        artistName.setText(artist.getFullName());
     }
 
     @Override
@@ -39,5 +42,6 @@ public class ArtistHeaderView extends HeaderView {
         super.initialize(context);
         LayoutInflater.from(context).inflate(R.layout.artist_header_view, this);
         artistView = ((ArtistView) findViewById(R.id.artist_header_view_artist_view));
+        artistName = ((TextView) findViewById(R.id.artist_header_view_artist_name));
     }
 }
