@@ -15,6 +15,8 @@ public final class MockedModelProvider {
     public SoundCloudUser getMockedArtist() {
         SoundCloudUser artist = new SoundCloudUser();
         artist.setFullName("Ivan BnW");
+        artist.setFollowersCount(21453);
+        artist.setTrackCount(37);
         artist.setAvatarUrl("https://i1.sndcdn.com/artworks-000164502660-la56ky-t500x500.jpg");
         return artist;
     }
