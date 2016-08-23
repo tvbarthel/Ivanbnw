@@ -20,6 +20,10 @@
     </Match>
 
     <Match>
+        <Class name="~.*\.InstrumentationIvanbApplication\$.*"/>
+    </Match>
+
+    <Match>
         <Package name="com.actionbarsherlock.internal.nineoldandroids.animation" />
     </Match>
 

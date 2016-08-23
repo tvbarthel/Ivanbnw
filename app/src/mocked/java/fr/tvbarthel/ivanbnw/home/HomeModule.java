@@ -4,6 +4,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import fr.tvbarthel.cheerleader.library.client.MockedModelProvider;
 
 /**
  * Module used to provide every components linked to the home.
@@ -12,13 +13,17 @@ import dagger.Provides;
 public class HomeModule {
 
     /**
-     * Provide a {@link HomeInteractor} to the graph.
+     * Provide a {@link HomeActor} to the graph.
      *
-     * @return {@link HomeInteractor} implementation.
+     * @param mockedModelProvider provider for mocked model.
+     * @return {@link HomeActor} implementation.
      */
     @Provides
     @Singleton
-    public HomeInteractor provideHomeInteractor() {
-        return new MockedHomeInteractorImpl();
+    public HomeActor provideHomeActor(MockedModelProvider mockedModelProvider) {
+        return new MockedHomeActorImpl(
+                mockedModelProvider.getMockedArtist(),
+                mockedModelProvider.getMockedTracks()
+        );
     }
 }

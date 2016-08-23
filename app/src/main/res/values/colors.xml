@@ -3,4 +3,10 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- track view !-->
+    <color name="track_view_normal_color_not_playing">#00000000</color>
+    <color name="track_view_pressed_color_not_playing">#55555555</color>
+    <color name="track_view_normal_color_playing">#33888888</color>
+    <color name="track_view_pressed_color_playing">#55555555</color>
 </resources>
