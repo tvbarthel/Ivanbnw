@@ -3,13 +3,13 @@ package fr.tvbarthel.ivanbnw.home;
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 
+import fr.tvbarthel.ivanbnw.R;
+
 /**
  * {@link android.support.v7.widget.RecyclerView.LayoutManager} used to render
  * the {@link HomeData} in a grid form.
  */
 public class HomeRecyclerLayoutManager extends GridLayoutManager {
-
-    private static final int SPAN_COUNT = 2;
 
     /**
      * {@link android.support.v7.widget.RecyclerView.LayoutManager} used to render
@@ -18,8 +18,8 @@ public class HomeRecyclerLayoutManager extends GridLayoutManager {
      * @param context holding context.
      */
     public HomeRecyclerLayoutManager(Context context) {
-        super(context, SPAN_COUNT);
-        setSpanSizeLookup(new InternalSpanSizeLookup());
+        super(context, context.getResources().getInteger(R.integer.home_recycler_span_count));
+        setSpanSizeLookup(new InternalSpanSizeLookup(getSpanCount()));
     }
 
     /**
@@ -27,10 +27,16 @@ public class HomeRecyclerLayoutManager extends GridLayoutManager {
      */
     private static final class InternalSpanSizeLookup extends SpanSizeLookup {
 
+        private final int spanCount;
+
+        public InternalSpanSizeLookup(int spanCount) {
+            this.spanCount = spanCount;
+        }
+
         @Override
         public int getSpanSize(int position) {
             if (position == 0) {
-                return SPAN_COUNT; // artist view header take full width.
+                return spanCount; // artist view header take full width.
             } else {
                 return 1; // a track take only one span.
             }

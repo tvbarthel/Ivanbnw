@@ -1,12 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/home_track_view_cover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/home_track_view_track_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:padding="@dimen/default_padding" />
-</FrameLayout>
+        android:background="@color/home_track_view_title_background"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center_vertical"
+        android:lines="1"
+        android:maxLines="1"
+        android:minLines="1"
+        android:paddingLeft="@dimen/default_padding_half"
+        android:paddingRight="@dimen/default_padding_quarter"
+        android:singleLine="true"
+        android:textColor="@color/home_track_view_title" />
+
+    <TextView
+        android:id="@+id/home_track_view_add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/track_view_button_normal"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:text="@string/add"
+        android:textAllCaps="true"
+        android:textColor="@color/track_view_button_text_color" />
+
+    <TextView
+        android:id="@+id/home_track_view_play_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/track_view_button_normal"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:text="@string/play"
+        android:textAllCaps="true"
+        android:textColor="@color/track_view_button_text_color" />
+
+    <TextView
+        android:id="@+id/home_track_view_playing_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/home_track_view_playing_indicator_background"
+        android:padding="@dimen/default_padding_quarter"
+        android:text="@string/playing"
+        android:textColor="@color/home_track_view_playing_indicator" />
+
+    <View
+        android:id="@+id/home_track_view_buttons_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/shadow_size"
+        android:background="@drawable/shadow_from_bottom_to_top" />
+
+    <View
+        android:id="@+id/home_track_view_track_title_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/shadow_size"
+        android:background="@drawable/shadow_from_bottom_to_top" />
+</merge>

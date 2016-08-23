@@ -180,6 +180,11 @@ public class HomeView extends FrameLayout {
             public void onPlayTrackRequested(SoundCloudTrack track) {
                 homeActor.requestPlay(track);
             }
+
+            @Override
+            public void onAddToPlaylistRequested(SoundCloudTrack track) {
+                homeActor.addToCurrentQueue(track);
+            }
         };
         homeRecyclerViewAdapter.setListener(internalListener);
     }
