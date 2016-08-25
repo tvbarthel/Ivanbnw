@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <drawable name="home_artist_followers_icon">@drawable/ic_people_white_24dp</drawable>
+    <drawable name="home_artist_tracks_icon">@drawable/ic_album_white_24dp</drawable>
+</resources>

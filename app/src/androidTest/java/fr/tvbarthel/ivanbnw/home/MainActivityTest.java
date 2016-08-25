@@ -22,6 +22,7 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.atLeastOnce;
@@ -101,6 +102,15 @@ public class MainActivityTest extends LocalizedActivityInstrumentationTestCase2<
         // ensure that loading is well hidden.
         onView(ViewMatchers.withId(R.id.home_view_dummy_progress))
                 .check(matches(withEffectiveVisibility(ViewMatchers.Visibility.INVISIBLE)));
+
+        // ensure that header is well populated
+        SoundCloudUser artist = mockedHomeData.getArtist();
+        onView(withId(R.id.home_artist_view_followers))
+                .check(matches(withText(String.valueOf(artist.getFollowersCount()))));
+        onView(withId(R.id.home_artist_view_tracks))
+                .check(matches(withText(String.valueOf(artist.getTrackCount()))));
+        onView(withId(R.id.artist_header_view_artist_name))
+                .check(matches(withText(artist.getFullName())));
 
         // take a screen shot.
         Spoon.screenshot(getActivity(), "Home_Data_Retrieved", getClass().getName(), "testHomeDataRetrieval");

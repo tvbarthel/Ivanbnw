@@ -4,14 +4,55 @@
     android:layout_height="match_parent">
 
     <FrameLayout
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/home_artist_view_cover"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_gravity="center" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/artist_view_size_bottom_bar_height"
+            android:layout_gravity="bottom"
+            android:background="@color/home_artist_view_background_color"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/home_artist_view_followers"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/artist_view_size_bottom_bar_height"
+                android:drawableLeft="@drawable/home_artist_followers_icon"
+                android:drawablePadding="@dimen/default_padding"
+                android:gravity="start|center_vertical"
+                android:paddingLeft="@dimen/default_padding"
+                android:paddingRight="@dimen/default_padding"
+                android:textColor="@color/home_artist_view_text_color"
+                android:textSize="@dimen/artist_view_size_bottom_bar_text_size" />
+
+            <TextView
+                android:id="@+id/home_artist_view_tracks"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/artist_view_size_bottom_bar_height"
+                android:drawableLeft="@drawable/home_artist_tracks_icon"
+                android:drawablePadding="@dimen/default_padding"
+                android:gravity="start|center_vertical"
+                android:paddingLeft="@dimen/default_padding"
+                android:paddingRight="@dimen/default_padding"
+                android:textColor="@color/home_artist_view_text_color"
+                android:textSize="@dimen/artist_view_size_bottom_bar_text_size" />
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/shadow_size"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="@dimen/artist_view_size_bottom_bar_height"
+            android:background="@drawable/shadow_from_bottom_to_top" />
 
     </FrameLayout>
 

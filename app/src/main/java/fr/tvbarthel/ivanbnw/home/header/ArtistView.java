@@ -1,11 +1,13 @@
-package fr.tvbarthel.ivanbnw.home;
+package fr.tvbarthel.ivanbnw.home.header;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
@@ -15,16 +17,19 @@ import fr.tvbarthel.ivanbnw.R;
 
 /**
  * View used to display the {@link SoundCloudUser} data
- * in the {@link HomeView}
+ * in the {@link fr.tvbarthel.ivanbnw.home.HomeView}
  */
-class ArtistView extends FrameLayout {
+class ArtistView extends CardView {
 
     private ImageView artistCover;
     private SoundCloudUser artist;
+    private int size;
+    private TextView followers;
+    private TextView tracks;
 
     /**
      * View used to display the {@link SoundCloudUser} data
-     * in the {@link HomeView}
+     * in the {@link fr.tvbarthel.ivanbnw.home.HomeView}
      *
      * @param context holding context.
      */
@@ -34,7 +39,7 @@ class ArtistView extends FrameLayout {
 
     /**
      * View used to display the {@link SoundCloudUser} data
-     * in the {@link HomeView}
+     * in the {@link fr.tvbarthel.ivanbnw.home.HomeView}
      *
      * @param context holding context.
      * @param attrs   attr from xml.
@@ -45,7 +50,7 @@ class ArtistView extends FrameLayout {
 
     /**
      * View used to display the {@link SoundCloudUser} data
-     * in the {@link HomeView}
+     * in the {@link fr.tvbarthel.ivanbnw.home.HomeView}
      *
      * @param context      holding context.
      * @param attrs        attr from xml.
@@ -54,6 +59,12 @@ class ArtistView extends FrameLayout {
     public ArtistView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initialize(context);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int sizeSpec = MeasureSpec.makeMeasureSpec(size, MeasureSpec.EXACTLY);
+        super.onMeasure(sizeSpec, sizeSpec);
     }
 
     /**
@@ -66,6 +77,8 @@ class ArtistView extends FrameLayout {
         Picasso.with(getContext()).load(
                 SoundCloudArtworkHelper.getCoverUrl(artist, SoundCloudArtworkHelper.XXXLARGE)
         ).fit().centerCrop().into(artistCover);
+        followers.setText(String.valueOf(artist.getFollowersCount()));
+        tracks.setText(String.valueOf(artist.getTrackCount()));
     }
 
     /**
@@ -76,5 +89,12 @@ class ArtistView extends FrameLayout {
     private void initialize(Context context) {
         LayoutInflater.from(context).inflate(R.layout.home_artist_view, this);
         artistCover = ((ImageView) findViewById(R.id.home_artist_view_cover));
+        Resources resources = context.getResources();
+        size = resources.getDimensionPixelSize(R.dimen.artist_view_size);
+
+        followers = ((TextView) findViewById(R.id.home_artist_view_followers));
+        tracks = ((TextView) findViewById(R.id.home_artist_view_tracks));
+
+        setRadius(resources.getDimensionPixelSize(R.dimen.artist_view_card_radius));
     }
 }

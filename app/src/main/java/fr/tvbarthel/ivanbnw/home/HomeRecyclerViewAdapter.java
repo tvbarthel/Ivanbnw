@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import fr.tvbarthel.cheerleader.library.client.SoundCloudTrack;
+import fr.tvbarthel.ivanbnw.home.header.ArtistHeaderView;
 
 /**
  * Adapter used to render {@link HomeData} inside
@@ -72,7 +73,7 @@ class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerViewAdapt
         ViewHolder viewHolder;
         switch (viewType) {
             case TYPE_ARTIST:
-                ArtistView artistView = new ArtistView(parent.getContext());
+                ArtistHeaderView artistView = new ArtistHeaderView(parent.getContext());
                 viewHolder = new ViewHolder(artistView);
                 break;
             case TYPE_TRACK:
@@ -171,7 +172,7 @@ class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerViewAdapt
      */
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private ArtistView artistView;
+        private ArtistHeaderView artistView;
         private TrackView trackView;
 
         /**
@@ -179,7 +180,7 @@ class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerViewAdapt
          *
          * @param artistView artistView to hold.
          */
-        public ViewHolder(ArtistView artistView) {
+        public ViewHolder(ArtistHeaderView artistView) {
             super(artistView);
             this.artistView = artistView;
         }
