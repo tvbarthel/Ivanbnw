@@ -69,6 +69,11 @@ class HomeActorImpl implements HomeActor {
         cheerleaderPlayer.addTrack(track, true);
     }
 
+    @Override
+    public void addToCurrentQueue(SoundCloudTrack track) {
+        cheerleaderPlayer.addTrack(track, false);
+    }
+
     @NonNull
     private Subscriber<HomeData> onHomeDataRetrieved() {
         return new Subscriber<HomeData>() {

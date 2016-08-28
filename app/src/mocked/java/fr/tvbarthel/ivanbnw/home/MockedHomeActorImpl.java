@@ -62,4 +62,9 @@ class MockedHomeActorImpl implements HomeActor {
             spectator.onTrackPlaying(track);
         }
     }
+
+    @Override
+    public void addToCurrentQueue(SoundCloudTrack track) {
+        // nothing.
+    }
 }

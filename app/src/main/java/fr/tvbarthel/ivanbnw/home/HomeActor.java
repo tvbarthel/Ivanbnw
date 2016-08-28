@@ -41,4 +41,11 @@ public interface HomeActor {
      */
     void requestPlay(SoundCloudTrack track);
 
+    /**
+     * Must add the given track at the end of the current playlist.
+     *
+     * @param track track to add to the current playback queue.
+     */
+    void addToCurrentQueue(SoundCloudTrack track);
 }
+

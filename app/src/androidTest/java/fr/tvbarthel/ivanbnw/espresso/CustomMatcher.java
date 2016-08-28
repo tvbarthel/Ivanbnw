@@ -21,6 +21,43 @@ public class CustomMatcher {
     }
 
     /**
+     * Match the first displayed view.
+     *
+     * @return matcher.
+     */
+    public static org.hamcrest.Matcher<View> firstView() {
+        return new FirstViewMatcher();
+    }
+
+    /**
+     * Matcher used to match the first displayed view.
+     */
+    private static class FirstViewMatcher extends TypeSafeMatcher<View> {
+
+        public boolean matchedBefore = false;
+
+        public FirstViewMatcher() {
+            matchedBefore = false;
+        }
+
+        @Override
+        public boolean matchesSafely(View view) {
+            if (matchedBefore) {
+                return false;
+            } else {
+                matchedBefore = true;
+                return true;
+            }
+        }
+
+        @Override
+        public void describeTo(Description description) {
+            description.appendText(" is the first view that comes along ");
+        }
+    }
+
+
+    /**
      * Custom matcher used to match a given alpha.
      */
     private static final class AlphaMatcher extends TypeSafeMatcher<View> {

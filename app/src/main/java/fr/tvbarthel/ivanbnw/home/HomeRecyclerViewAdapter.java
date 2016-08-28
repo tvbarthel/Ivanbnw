@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import fr.tvbarthel.cheerleader.library.client.SoundCloudTrack;
+import fr.tvbarthel.ivanbnw.R;
 import fr.tvbarthel.ivanbnw.home.header.ArtistHeaderView;
+import fr.tvbarthel.ivanbnw.home.track.CardTrackView;
 
 /**
  * Adapter used to render {@link HomeData} inside
@@ -25,6 +27,7 @@ class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerViewAdapt
      * View type for track view.
      */
     private static final int TYPE_TRACK = 0x00000002;
+    private final int padding;
 
     /**
      * Current {@link HomeData} adapted.
@@ -42,9 +45,9 @@ class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerViewAdapt
     private Listener listener;
 
     /**
-     * Listener used to catch {@link TrackView} events.
+     * Listener used to catch {@link CardTrackView} events.
      */
-    private TrackView.Listener internalTrackViewListener;
+    private CardTrackView.Listener internalTrackViewListener;
 
     /**
      * Position of the current played track.
@@ -58,14 +61,23 @@ class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerViewAdapt
      * @param context context used to initialize internal component.
      */
     public HomeRecyclerViewAdapter(Context context) {
-        internalTrackViewListener = new TrackView.Listener() {
+        internalTrackViewListener = new CardTrackView.Listener() {
             @Override
             public void onPlayTrackRequested(SoundCloudTrack track) {
                 if (listener != null) {
                     listener.onPlayTrackRequested(track);
                 }
             }
+
+            @Override
+            public void onAddToPlaylistRequested(SoundCloudTrack track) {
+                if (listener != null) {
+                    listener.onAddToPlaylistRequested(track);
+                }
+            }
         };
+
+        padding = context.getResources().getDimensionPixelSize(R.dimen.default_padding_half);
     }
 
     @Override
@@ -77,8 +89,14 @@ class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerViewAdapt
                 viewHolder = new ViewHolder(artistView);
                 break;
             case TYPE_TRACK:
-                TrackView trackView = new TrackView(parent.getContext());
+                CardTrackView trackView = new CardTrackView(parent.getContext());
                 trackView.setListener(internalTrackViewListener);
+
+                RecyclerView.LayoutParams layoutParams = new RecyclerView.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
+                );
+                layoutParams.setMargins(padding, padding, padding, padding);
+                trackView.setLayoutParams(layoutParams);
                 viewHolder = new ViewHolder(trackView);
                 break;
             default:
@@ -173,7 +191,7 @@ class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerViewAdapt
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         private ArtistHeaderView artistView;
-        private TrackView trackView;
+        private CardTrackView trackView;
 
         /**
          * View holder pattern.
@@ -190,7 +208,7 @@ class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerViewAdapt
          *
          * @param trackView trackView to hold.
          */
-        public ViewHolder(TrackView trackView) {
+        public ViewHolder(CardTrackView trackView) {
             super(trackView);
             this.trackView = trackView;
         }
@@ -207,5 +225,12 @@ class HomeRecyclerViewAdapter extends RecyclerView.Adapter<HomeRecyclerViewAdapt
          * @param track track to play.
          */
         void onPlayTrackRequested(SoundCloudTrack track);
+
+        /**
+         * Called when the user wants to add the track to the current playlist.
+         *
+         * @param track track to add to the playlist.
+         */
+        void onAddToPlaylistRequested(SoundCloudTrack track);
     }
 }

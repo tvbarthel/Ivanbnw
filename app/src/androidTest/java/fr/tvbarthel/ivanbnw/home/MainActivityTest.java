@@ -21,9 +21,14 @@ import fr.tvbarthel.ivanbnw.core.LocalizedActivityInstrumentationTestCase2;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.contrib.RecyclerViewActions.scrollTo;
+import static android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition;
 import static android.support.test.espresso.matcher.ViewMatchers.withEffectiveVisibility;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static fr.tvbarthel.ivanbnw.espresso.CustomMatcher.firstView;
+import static org.hamcrest.Matchers.allOf;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.doAnswer;
@@ -154,14 +159,27 @@ public class MainActivityTest extends LocalizedActivityInstrumentationTestCase2<
 
         SoundCloudTrack track = mockedHomeData.getTracks().get(0);
 
+        onView(withId(R.id.home_view_recycler)).perform(scrollToPosition(3));
+
         // take a screen shot.
         Spoon.screenshot(getActivity(), "Home_before_playing", getClass().getName(), "testHomeRequestPlaying");
 
         // request playing track
-        onView(withText(track.getTitle())).perform(click());
+        onView(allOf(withText(R.string.play), firstView())).perform(click());
 
         // verify that actor is well called after UI events
         verify(mockedHomeActor, atLeastOnce()).requestPlay(track);
+
+        // assert that playing visual feedback is well displayed
+        onView(allOf(
+                withId(R.id.home_track_view_playing_indicator),
+                withParent(
+                        allOf(
+                                withId(R.id.card_track_view_track_view),
+                                firstView()
+                        )
+                )
+        )).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)));
 
         // take a screen shot.
         Spoon.screenshot(getActivity(), "Home_after_playing", getClass().getName(), "testHomeRequestPlaying");
