@@ -8,6 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Interpolator;
 import android.widget.FrameLayout;
 
 import javax.inject.Inject;
@@ -41,6 +43,9 @@ public class HomeView extends FrameLayout {
     private View loadingView;
     private RecyclerView recyclerView;
     private HomeRecyclerViewAdapter homeRecyclerViewAdapter;
+    private int scrollY;
+    private HomeBackgroundView backgroundView;
+    private Interpolator interpolator;
 
     /**
      * View used to display the home to the user.
@@ -99,14 +104,15 @@ public class HomeView extends FrameLayout {
         if (recyclerView.getVisibility() != VISIBLE) {
             homeRecyclerViewAdapter.setHomeData(homeData);
             homeRecyclerViewAdapter.notifyDataSetChanged();
-            recyclerView.animate().alpha(1f).setStartDelay(200)
-                    .setDuration(300).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationStart(Animator animation) {
-                    recyclerView.setAlpha(0f);
-                    recyclerView.setVisibility(VISIBLE);
-                }
-            });
+            backgroundView.animateIn();
+            recyclerView.setAlpha(0f);
+            recyclerView.setVisibility(VISIBLE);
+            recyclerView.animate()
+                    .alpha(1f)
+                    .setStartDelay(500)
+                    .setDuration(300)
+                    .setInterpolator(interpolator)
+                    .setListener(null);
         }
     }
 
@@ -168,7 +174,11 @@ public class HomeView extends FrameLayout {
         recyclerView.setVisibility(INVISIBLE);
         loadingView.setVisibility(INVISIBLE);
 
+        backgroundView = ((HomeBackgroundView) findViewById(R.id.home_view_background));
+
         initializeInternalListeners();
+
+        interpolator = new DecelerateInterpolator();
     }
 
     /**
@@ -187,5 +197,14 @@ public class HomeView extends FrameLayout {
             }
         };
         homeRecyclerViewAdapter.setListener(internalListener);
+
+        scrollY = 0;
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                scrollY += dy;
+                backgroundView.setScrollY(scrollY);
+            }
+        });
     }
 }
