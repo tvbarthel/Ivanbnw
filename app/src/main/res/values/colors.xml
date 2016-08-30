@@ -4,23 +4,28 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="white">#FFFFFF</color>
+    <color name="greyLight">#b7b7b7</color>
     <color name="grey">#797979</color>
-    <color name="grey_light">#b7b7b7</color>
-    <color name="grey_dark">#414141</color>
-    <color name="shadow_color">#45000000</color>
+    <color name="greyDark">#414141</color>
+    <color name="greyDarkest">#2c2c2c</color>
+
+    <color name="shadow_color">#33000000</color>
     <color name="transparent">#00000000</color>
 
     <color name="home_artist_view_text_color">@color/white</color>
     <color name="home_artist_view_background_color">@color/grey</color>
 
-    <color name="artist_header_view_artist_name">@color/grey</color>
+    <color name="artist_header_view_artist_name">@color/white</color>
+    <color name="home_view_background_color">@color/greyDarkest</color>
+    <color name="home_view_background_first_triangle_color">@color/grey</color>
+    <color name="home_view_background_second_triangle_color">@color/greyDark</color>
 
-    <color name="track_view_button_normal">@color/grey_light</color>
+    <color name="track_view_button_normal">@color/greyLight</color>
     <color name="track_view_button_text_color">@color/white</color>
-    <color name="track_view_button_pressed">@color/grey_dark</color>
+    <color name="track_view_button_pressed">@color/greyDark</color>
 
     <color name="home_track_view_title_background">@color/grey</color>
     <color name="home_track_view_title">@color/white</color>
-    <color name="home_track_view_playing_indicator_background">@color/grey_dark</color>
+    <color name="home_track_view_playing_indicator_background">@color/greyDark</color>
     <color name="home_track_view_playing_indicator">@color/white</color>
 </resources>
