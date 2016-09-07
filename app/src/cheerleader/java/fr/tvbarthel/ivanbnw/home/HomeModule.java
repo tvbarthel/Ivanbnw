@@ -24,6 +24,7 @@ public class HomeModule {
      */
     @Provides
     @Singleton
+    @NonNull
     public HomeActor provideHomeActor(
             @NonNull CheerleaderClient cheerleaderClient,
             @NonNull CheerleaderPlayer cheerleaderPlayer) {

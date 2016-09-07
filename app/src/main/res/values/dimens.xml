@@ -16,4 +16,5 @@
 
     <dimen name="card_track_view_radius">3dp</dimen>
     <dimen name="card_track_view_elevation">4dp</dimen>
+    <dimen name="player_view_height">100dp</dimen>
 </resources>

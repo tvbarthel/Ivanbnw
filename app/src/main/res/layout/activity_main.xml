@@ -6,6 +6,7 @@
     tools:context="fr.tvbarthel.ivanbnw.MainActivity">
 
     <fr.tvbarthel.ivanbnw.home.HomeView
+        android:id="@+id/main_activity_home_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center" />

@@ -17,6 +17,7 @@ import javax.inject.Inject;
 import fr.tvbarthel.cheerleader.library.client.SoundCloudTrack;
 import fr.tvbarthel.ivanbnw.R;
 import fr.tvbarthel.ivanbnw.core.IvanbApplication;
+import fr.tvbarthel.ivanbnw.player.PlaylistView;
 
 /**
  * View used to display the home to the user.
@@ -46,6 +47,7 @@ public class HomeView extends FrameLayout {
     private int scrollY;
     private HomeBackgroundView backgroundView;
     private Interpolator interpolator;
+    private PlaylistView playlistView;
 
     /**
      * View used to display the home to the user.
@@ -89,6 +91,15 @@ public class HomeView extends FrameLayout {
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         homeActor.detachSpectator();
+    }
+
+    /**
+     * Used to know if the home view as handled the back press events.
+     *
+     * @return true if the back press is handled internally.
+     */
+    public boolean onBackPressed() {
+        return playlistView.onBackPressed();
     }
 
     private void displayHomeData(@NonNull HomeData homeData) {
@@ -147,6 +158,7 @@ public class HomeView extends FrameLayout {
         LayoutInflater.from(context).inflate(R.layout.home_view, this);
 
         loadingView = findViewById(R.id.home_view_dummy_progress);
+        playlistView = ((PlaylistView) findViewById(R.id.home_view_playlist_view));
         recyclerView = ((RecyclerView) findViewById(R.id.home_view_recycler));
         recyclerView.setLayoutManager(new HomeRecyclerLayoutManager(context));
         homeRecyclerViewAdapter = new HomeRecyclerViewAdapter(context);
