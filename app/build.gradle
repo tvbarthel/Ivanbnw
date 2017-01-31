@@ -44,6 +44,14 @@ android {
 
         }
     }
+
+    // filter build variants
+    variantFilter {
+        variant ->
+            if (variant.name.contains("mocked") && variant.name.contains("Release")) {
+                variant.setIgnore(true);
+            }
+    }
 }
 
 dependencies {
