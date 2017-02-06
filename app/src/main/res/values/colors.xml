@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="white">#FFFFFF</color>
     <color name="greyLight">#b7b7b7</color>
+    <color name="greyLightTransparent">#55b7b7b7</color>
     <color name="grey">#797979</color>
     <color name="greyDark">#414141</color>
     <color name="greyDarkest">#2c2c2c</color>
@@ -28,4 +29,9 @@
     <color name="home_track_view_title">@color/white</color>
     <color name="home_track_view_playing_indicator_background">@color/greyDark</color>
     <color name="home_track_view_playing_indicator">@color/white</color>
+
+    <color name="playlist_track_view_text_color">@color/white</color>
+    <color name="playlist_track_view_background">@color/greyDark</color>
+    <color name="playlist_track_view_background_selected">@color/greyLight</color>
+    <color name="playlist_track_view_background_pressed">@color/greyLightTransparent</color>
 </resources>

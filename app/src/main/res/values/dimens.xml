@@ -17,4 +17,10 @@
     <dimen name="card_track_view_radius">3dp</dimen>
     <dimen name="card_track_view_elevation">4dp</dimen>
     <dimen name="player_view_height">100dp</dimen>
+
+    <dimen name="playlist_track_view_jacket_size">60dp</dimen>
+    <dimen name="playlist_track_view_duration_width">50dp</dimen>
+    <dimen name="playlist_track_view_title">15sp</dimen>
+    <dimen name="playlist_track_view_duration">15sp</dimen>
+
 </resources>

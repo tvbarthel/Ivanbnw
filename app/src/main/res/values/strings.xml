@@ -4,4 +4,5 @@
     <string name="add">Add</string>
     <string name="play">play</string>
     <string name="playing">Playing</string>
+    <string name="duration">%1$02d:%2$02d</string>
 </resources>
