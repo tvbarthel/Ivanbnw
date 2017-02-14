@@ -1,20 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+       xmlns:app="http://schemas.android.com/apk/res-auto"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/shadow_size"
-        android:background="@drawable/shadow_from_bottom_to_top" />
+        android:background="@drawable/shadow_from_bottom_to_top"/>
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/shadow_size"
-        android:background="@color/greyLight"
-        android:gravity="center"
-        android:padding="@dimen/default_padding"
-        android:text="Player View" />
+        android:background="@color/player_view_background"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/default_padding_half"
+        android:paddingTop="@dimen/default_padding_half">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/player_view_track_title"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/player_view_track_height"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center_vertical"
+                android:lines="1"
+                android:maxLines="1"
+                android:minLines="1"
+                android:paddingLeft="@dimen/default_padding"
+                android:paddingRight="@dimen/default_padding"
+                android:text="Todo: implements model binding"
+                android:textColor="@color/player_view_text_color"
+                android:textSize="@dimen/player_view_track_text_size"/>
+
+            <SeekBar
+                android:id="@+id/player_view_seekbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="@dimen/player_view_timer_height"
+                android:layout_marginTop="@dimen/player_view_track_height"
+                android:background="?attr/selectableItemBackground"
+                android:progressTint="@color/white"
+                android:thumbTint="@color/white"/>
+
+            <TextView
+                android:id="@+id/player_view_current_play_time"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/player_view_timer_height"
+                android:layout_gravity="bottom|start"
+                android:gravity="center_vertical|start"
+                android:paddingLeft="@dimen/default_padding"
+                android:paddingRight="@dimen/default_padding"
+                android:text="02:35"
+                android:textColor="@color/player_view_text_color"
+                android:textSize="@dimen/player_view_timer_text_size"/>
+
+            <TextView
+                android:id="@+id/player_view_track_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/player_view_timer_height"
+                android:layout_gravity="bottom|end"
+                android:gravity="center_vertical|end"
+                android:paddingLeft="@dimen/default_padding"
+                android:paddingRight="@dimen/default_padding"
+                android:text="03:28"
+                android:textColor="@color/player_view_text_color"
+                android:textSize="@dimen/player_view_timer_text_size"/>
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/player_view_rewind_button"
+            android:layout_width="@dimen/player_view_button_size"
+            android:layout_height="@dimen/player_view_button_size"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="@dimen/default_padding"
+            android:layout_marginRight="@dimen/default_padding"
+            android:background="?attr/selectableItemBackground"
+            android:fontFamily="sans-serif-light"
+            app:srcCompat="@drawable/ic_fast_rewind_white_24dp"/>
+
+        <ImageView
+            android:id="@+id/player_view_forward_button"
+            android:layout_width="@dimen/player_view_button_size"
+            android:layout_height="@dimen/player_view_button_size"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="@dimen/default_padding"
+            android:layout_marginLeft="@dimen/default_padding"
+            android:layout_marginRight="@dimen/default_padding"
+            android:background="?attr/selectableItemBackground"
+            android:fontFamily="sans-serif-light"
+            app:srcCompat="@drawable/ic_fast_forward_white_24dp"/>
+
+    </LinearLayout>
 
 </merge>

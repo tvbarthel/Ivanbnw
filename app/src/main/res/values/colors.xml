@@ -34,4 +34,6 @@
     <color name="playlist_track_view_background">@color/greyDark</color>
     <color name="playlist_track_view_background_selected">@color/greyLight</color>
     <color name="playlist_track_view_background_pressed">@color/greyLightTransparent</color>
+    <color name="player_view_background">@color/greyLight</color>
+    <color name="player_view_text_color">@color/white</color>
 </resources>

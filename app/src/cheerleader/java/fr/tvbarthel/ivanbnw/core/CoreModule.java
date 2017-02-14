@@ -27,9 +27,10 @@ public class CoreModule {
     @Singleton
     protected CheerleaderClient provideCheerleaderClient(Context context) {
         return new CheerleaderClient.Builder().from(context)
-                .with(R.string.client_id)
-                .supports(context.getString(R.string.ivanbnw_sound_cloud_nickname))
-                .build();
+            .with(R.string.client_id)
+            .log(CheerleaderClient.LOG_RETROFIT)
+            .supports(context.getString(R.string.ivanbnw_sound_cloud_id))
+            .build();
     }
 
     /**
@@ -42,8 +43,8 @@ public class CoreModule {
     @Singleton
     protected CheerleaderPlayer provideCheerleaderPlayer(Context context) {
         return new CheerleaderPlayer.Builder().from(context)
-                .notificationActivity(MainActivity.class)
-                .with(R.string.client_id)
-                .build();
+            .notificationActivity(MainActivity.class)
+            .with(R.string.client_id)
+            .build();
     }
 }

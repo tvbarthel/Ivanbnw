@@ -13,6 +13,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner 'fr.tvbarthel.ivanbnw.core.IvanbRunner'
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
 
@@ -64,7 +65,7 @@ dependencies {
     compile 'com.google.dagger:dagger:2.2'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'fr.tvbarthel.cheerleader:library:1.0.2'
-    compile 'com.netcosports.recyclergesture:library:0.2.0@aar'
+    compile 'com.netcosports.recyclergesture:library:0.3.0@aar'
     compile 'io.reactivex:rxandroid:1.2.0'
     compile 'io.reactivex:rxjava:1.1.5'
     compile 'com.squareup.retrofit2:retrofit:2.0.2'

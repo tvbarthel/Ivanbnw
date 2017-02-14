@@ -15,7 +15,7 @@ allprojects {
     repositories {
         jcenter()
         maven {
-            url 'https://github.com/netcosports/maven/raw/master/'
+            url 'https://github.com/tvbarthel/maven/raw/master/'
         }
     }
 }
