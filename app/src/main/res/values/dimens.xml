@@ -23,4 +23,11 @@
     <dimen name="playlist_track_view_title">15sp</dimen>
     <dimen name="playlist_track_view_duration">15sp</dimen>
 
+    <dimen name="player_view_track_height">30dp</dimen>
+    <dimen name="player_view_timer_height">20dp</dimen>
+    <dimen name="player_view_track_text_size">18sp</dimen>
+    <dimen name="player_view_timer_text_size">14sp</dimen>
+    <dimen name="player_view_button_size">35dp</dimen>
+
+
 </resources>
